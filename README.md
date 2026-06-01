@@ -1,16 +1,16 @@
 AI-Learning-Journey/
 │
 ├── README.md
-├── Supervised Machine Learning: Regression and Classification/
+├── Module 01/
 │   ├── Introduction to Machine Learning.md
 │   ├── Regression with multiple input variables.md
 │   └── Classification.md
-├── Advanced Learning Algorithms/
+├── Module 02/
 │   ├── Neural Networks.md
 │   ├── Neural network training.md
 │   ├── Advice for applying machine learning.md
 │   └── Decision trees.md
-├── Unsupervised Learning, Recommenders, Reinforcement Learning/
+├── Module 03/
 │   ├── Unsupervised learning.md
-│   ├──  Recommender systems.md
-│   └──  Reinforcement learning.md
+│   ├── Recommender systems.md
+│   └── Reinforcement learning.md
