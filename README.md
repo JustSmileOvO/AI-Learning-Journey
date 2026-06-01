@@ -1,11 +1,16 @@
 AI-Learning-Journey/
 │
 ├── README.md
-├── module 1- Machine Learning Specialization
-│   ├── notes.md
-│   └── exercises.ipynb
-├── Week-02/
-│   ├── notes.md
-│   └── exercises.ipynb
-├── Week-03/
-└── Resources/
+├── Supervised Machine Learning: Regression and Classification/
+│   ├── Introduction to Machine Learning.md
+│   ├── Regression with multiple input variables.md
+│   └── Classification.md
+├── Advanced Learning Algorithms/
+│   ├── Neural Networks.md
+│   ├── Neural network training.md
+│   ├── Advice for applying machine learning.md
+│   └── Decision trees.md
+├── Unsupervised Learning, Recommenders, Reinforcement Learning/
+│   ├── Unsupervised learning.md
+│   ├──  Recommender systems.md
+│   └──  Reinforcement learning.md
