@@ -16,9 +16,7 @@
 - Model learns a function f(x) → prediction ŷ.  
 - Linear regression model: f(x) = w . x + b.  
 - w = slope, b = intercept.  
-- Called **univariate linear regression** when only one input variable.  
-- Optional labs let learners experiment with different w, b.  
-- Next step: define a **cost function** to measure accuracy.  
+- Called **univariate linear regression** when only one input variable.
 
 ---
 
@@ -56,7 +54,6 @@ J(w,b) = 1/2m} ∑{^(m) v(i=1)} (f(x^(i) ) - y^(i) )^2
 - Poor choices (e.g., 𝑤=-0.15, b=800 ) → bad fit, high cost.  
 - Flat line 𝑤=0, b=360 → slightly better but still poor.  
 - Near-optimal choice → line fits data well, cost close to minimum.  
-- Optional lab: interactively test different 𝑤, b values.  
 - Leads to **gradient descent** as a systematic way to find best parameters.  
 
 ---
@@ -116,7 +113,6 @@ J(w,b) = 1/2m} ∑{^(m) v(i=1)} (f(x^(i) ) - y^(i) )^2
 - Line fit improves gradually until best fit is reached.  
 - Example prediction: 1,250 sq ft house → ~$250,000.  
 - This process is called **batch gradient descent** (uses all training data at each step).  
-- Optional labs let learners run code, see cost decrease, and visualize convergence.  
 
 ---
 
