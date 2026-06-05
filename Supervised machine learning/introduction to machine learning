@@ -25,8 +25,8 @@
 - **Error** = difference between prediction ŷ and true value y.  
 - **Squared error** = (ŷ - y)^2.  
 - Cost function averages squared errors across all training examples:
-J(w,b) = 1/2m} ∑{^(m) v(i=1)} (f(x^(i) ) - y^(i) )^2 
-- Goal: find \(w, b\) that minimize \(J(w,b)\).  
+J(w,b) = 1/2m} ∑{^(m) _(i=1)} (f(x^(i) ) - y^(i) )^2 
+- Goal: find w, b that minimize J(w,b).  
 - Squared error cost is the most common for regression problems.  
 
 ---
