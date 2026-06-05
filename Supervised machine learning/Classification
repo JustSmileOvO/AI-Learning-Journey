@@ -1,1 +1,105 @@
+### Linear Regression vs. Classification
+- Linear regression predicts continuous values.  
+- Classification predicts categories (yes/no, 0/1).  
+- Binary classification = two possible outputs.  
+- Linear regression is not ideal for classification because outputs can go outside 0–1.  
+- Logistic regression solves this by mapping outputs to probabilities between 0 and 1.  
 
+---
+
+### Logistic Regression & Sigmoid Function
+- Logistic regression fits an **S-shaped curve** using the sigmoid function.  
+- Sigmoid formula: g(z) = 1/(1 + e^(-z) ).  
+- Outputs always between 0 and 1.  
+- Interpretation: Output = probability that y=1.  
+- Example: Output 0.7 → 70% chance of malignant tumor, 30% chance benign.  
+
+---
+
+### Decision Boundary
+- Logistic regression predicts 1 when w . x + b >= 0 , else predicts 0.  
+- The **decision boundary** is where w . x + b = 0.  
+- With two features, boundary can be a line (linear) or a curve (polynomial features).  
+- Higher-order features → more complex boundaries (circles, ellipses, irregular shapes).  
+- Goal: Find boundaries that generalize well, not overly complex.  
+
+---
+
+### Cost Function for Logistic Regression
+- Squared error cost is not suitable (non-convex, many local minima).  
+- Logistic regression uses **logarithmic loss**:  
+  - If y=1: Loss = -log(f(x).  
+  - If y=0: Loss = -log(1-f(x)).  
+- Ensures convex cost function → gradient descent converges reliably.  
+- Penalizes wrong predictions heavily, especially confident wrong predictions.  
+
+---
+
+### Simplified Loss & Cost Function
+- Unified loss formula:  
+f(x), y) = -y log(f(x)) - (1-y) log(1-f(x)) 
+- Cost function = average loss across all training examples.  
+- Derived from **maximum likelihood estimation**.  
+- Convex, widely used in practice.  
+
+---
+
+### Gradient Descent for Logistic Regression
+- Update rules look similar to linear regression.  
+- Difference: f(x) is sigmoid, not linear.  
+- Derivatives:  
+  - ∂𝐽/∂𝑤 = 1/𝑚 ∑(𝑓 (𝑥^(𝑖) ) − 𝑦^(𝑖) ) ⋅ 𝑥^(𝑖)  
+  - ∂𝐽/∂b = 1/𝑚 ∑(𝑓 (𝑥^(𝑖) ) − 𝑦^(𝑖) )
+- Feature scaling helps convergence.  
+- Vectorization speeds up computation.  
+
+---
+
+### Underfitting vs. Overfitting
+- **Underfitting (High Bias)**: Model too simple, misses patterns.  
+- **Overfitting (High Variance)**: Model too complex, memorizes training data, fails to generalize.  
+- Goal: Find a model “just right.”  
+- Goldilocks analogy: Too few features = underfit, too many = overfit, balanced = just right.  
+
+---
+
+### Addressing Overfitting
+1. **Collect more data** → smooths model, reduces variance.  
+2. **Use fewer features (feature selection)** → reduces complexity.  
+3. **Regularization** → shrinks parameter values without discarding features.  
+
+---
+
+### Regularization & Modified Cost Function
+- Regularization adds penalty term:  
+  J(w,b) = original cost + (λ/2m) ∑ w_j^2  
+- λ = regularization parameter controlling trade-off.  
+- λ = 0 → overfit.  
+- λ very large → underfit.  
+- Balanced λ → just right.  
+- Convention: Regularize w, not b.  
+
+---
+
+### Gradient Descent with Regularized Linear Regression
+- Update rule for w_j:  
+  w_j: = w_j - 𝛼 \Big( 1/m ∑(𝑓 (𝑥^(𝑖) ) − 𝑦^(𝑖) ) x^(i)_j + (λ/m) w_j
+- Effect: Shrinks w_j slightly each iteration.  
+- Prevents weights from growing too large → smoother model.  
+
+---
+
+### Gradient Descent with Regularized Logistic Regression
+- Cost function = logistic cost + regularization term.  
+- Gradient updates same as regularized linear regression, except f(x) = sigmoid.  
+- Regularize w_j, not b.  
+- Produces smoother decision boundaries, better generalization.  
+
+---
+
+👉 In short:  
+- Linear regression → continuous values. Logistic regression → classification with probabilities.  
+- Decision boundaries separate classes; complexity depends on features.  
+- Logistic regression uses log-loss for convexity.  
+- Gradient descent updates shrink weights with regularization.  
+- Overfitting vs. underfitting is about balance; regularization, feature selection, and more data help.  
