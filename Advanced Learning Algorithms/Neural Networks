@@ -1,1 +1,131 @@
+## 🖱️ Demand Prediction & Neural Networks
+- Logistic regression predicts if a T‑shirt is a top seller based on price.  
+- Neurons = simplified logistic units (input → formula → activation output).  
+- Neural networks combine multiple neurons into **layers**:  
+  - Input layer (features).  
+  - Hidden layer (affordability, awareness, quality).  
+  - Output layer (final probability).  
+- Neural networks learn their own features → powerful alternative to manual feature engineering.  
+- Architecture = number of hidden layers + neurons per layer.  
 
+---
+
+## 🖼 Face Recognition Example
+- Input: image pixels (e.g., 1,000×1,000 → 1M values).  
+- Layers progressively learn:  
+  - First hidden layer → edges/lines.  
+  - Second hidden layer → facial parts (eyes, nose, ears).  
+  - Third hidden layer → whole face shapes.  
+- Output layer → identity prediction.  
+- Same principle applies to other domains (cars, digits, etc.).  
+
+---
+
+## 🧩 Layers of Neurons
+- Each neuron computes: a = g(w . x + b).  
+- Hidden layer outputs a vector of activations.  
+- Input layer = Layer 0, hidden layers = Layer 1, 2…, output layer = final.  
+- Superscripts [L] denote layer, subscripts j denote neuron index.  
+- Output can be thresholded at 0.5 for binary classification.  
+
+---
+
+## 🔄 Forward Propagation
+- Algorithm for inference: pass activations forward layer by layer.  
+- Example: digit recognition (0 vs 1).  
+  - Input: 64 pixels.  
+  - Hidden Layer 1 → 25 neurons.  
+  - Hidden Layer 2 → 15 neurons.  
+  - Output Layer → 1 neuron (probability).  
+- Sequence: x -> a^[1] -> a^[2] -> a^[3].  
+- Forward propagation = efficient inference; backpropagation = training.  
+
+---
+
+## ⚙️ TensorFlow Inference
+- Frameworks: TensorFlow & PyTorch (focus on TensorFlow).  
+- Example: coffee roasting (temperature + duration → good/bad).  
+- Dense layers:  
+  - Layer 1 → 3 units, sigmoid.  
+  - Layer 2 → 1 unit, sigmoid.  
+- Compute activations forward, threshold output for classification.  
+- Same approach applies to digit recognition.  
+
+---
+
+## 📊 Data Representation (NumPy vs TensorFlow)
+- NumPy: often uses 1D arrays.  
+- TensorFlow: prefers 2D matrices (tensors).  
+- Row vector = 1×n, column vector = n×1.  
+- TensorFlow converts NumPy arrays into tensors internally.  
+- Activations are stored as matrices (e.g., 1×3, 1×1).  
+- Conversion between formats possible with `.numpy()`.  
+
+---
+
+## 🏗 Building Neural Networks in TensorFlow
+- Sequential API strings layers together automatically.  
+- Example: coffee dataset → X (4×2 matrix), Y (labels).  
+- Steps:  
+  - `model = Sequential([...])`.  
+  - `model.compile(...)`.  
+  - `model.fit(X, Y)`.  
+  - `model.predict(X_new)`.  
+- Compact code, but important to understand what happens under the hood.  
+
+---
+
+## 🧠 Manual Forward Prop in Python
+- Implemented with arrays and dot products.  
+- Compute each neuron’s activation individually:  
+  - z = w . x + b  
+  - a = sigmoid(z)  
+- Group activations into arrays → pass to next layer.  
+- Builds intuition for what frameworks automate.  
+
+---
+
+## 🔢 General Dense Function
+- Define reusable `dense()` function:  
+  - Inputs: activations from previous layer, weights matrix, bias vector.  
+  - Loop through neurons → compute activations.  
+  - Return activation vector.  
+- Chain multiple dense layers → full forward propagation.  
+- Helps debug and understand neural networks deeply.  
+
+---
+
+## 🌍 ANI vs AGI
+- **ANI (Artificial Narrow Intelligence)**: specialized tasks (search, cars, speakers). Tremendous progress.  
+- **AGI (Artificial General Intelligence)**: human‑level intelligence across tasks. Still elusive.  
+- Misconception: progress in ANI ≠ progress in AGI.  
+- Brain plasticity experiments show adaptability → hint at possible general learning algorithms.  
+- AGI remains a fascinating but uncertain long‑term goal.  
+
+---
+
+## ⚡ Vectorization
+- Neural networks scale thanks to vectorization (matrix multiplications).  
+- GPUs/CPUs excel at parallel matrix math.  
+- Replace loops with `np.matmul` → efficient forward propagation.  
+- Inputs, weights, biases all treated as matrices.  
+
+---
+
+## 📐 Matrix Multiplication Basics
+- Dot product: multiply corresponding elements, sum.  
+- Vector × Matrix: row vector × matrix → row vector result.  
+- Matrix × Matrix: rows of first × columns of second → output matrix.  
+- Rule: columns of first = rows of second.  
+- Output dimensions: rows of first × columns of second.  
+
+---
+
+## 🔄 Vectorized Forward Prop Example
+- Input A^T = [200,17].  
+- Weights W = 2×3 matrix.  
+- Biases B = 1×3 matrix.  
+- Compute Z = A^T W + B.  
+- Apply sigmoid element‑wise → activations (e.g., [1,0,1]).  
+- Implemented in NumPy with `np.matmul` + activation function.  
+- TensorFlow convention: inputs stored as rows in matrix X.  
