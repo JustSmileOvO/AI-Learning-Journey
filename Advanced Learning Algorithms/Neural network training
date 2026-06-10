@@ -1,1 +1,133 @@
+### Training Neural Networks in TensorFlow
+- Training involves three main steps:  
+  1. **Specify the model** (layers, activations).  
+  2. **Compile the model** with a loss function (binary cross-entropy for classification).  
+  3. **Fit the model** to data with gradient descent and epochs.  
+- Understanding what happens behind the code helps with debugging.  
 
+---
+
+### Logistic Regression vs Neural Networks
+- Logistic regression training had three steps: define output function, define loss/cost, minimize cost with gradient descent.  
+- Neural networks follow the same pattern but with more layers and parameters.  
+- Loss functions: binary cross-entropy for classification, mean squared error for regression.  
+- Backpropagation computes gradients efficiently.  
+
+---
+
+### Activation Functions
+- **Sigmoid**: outputs between 0 and 1, good for probabilities.  
+- **ReLU**: g(z) = max(0, z), outputs non-negative values, widely used in modern networks.  
+- **Linear**: g(z) = z, often used in regression tasks.  
+- **Softmax**: for multi-class classification.  
+- Choosing the right activation makes networks more powerful.  
+
+---
+
+### Choosing Activation Functions
+- **Output layer**:  
+  - Sigmoid → binary classification.  
+  - Linear → regression with positive/negative values.  
+  - ReLU → regression with non-negative values.  
+- **Hidden layers**: ReLU is the default choice today.  
+- ReLU is faster and avoids vanishing gradients compared to sigmoid.  
+
+---
+
+### Why Activation Functions Are Needed
+- Without non-linear activations, neural networks collapse into linear or logistic regression.  
+- Linear functions stacked together remain linear.  
+- Non-linear activations (like ReLU) give networks the ability to learn complex patterns.  
+
+---
+
+### Multi-Class Classification
+- Extends binary classification to more than two categories.  
+- Examples: digit recognition (0–9), disease diagnosis, defect detection.  
+- Models must output probabilities for each class.  
+- Softmax regression generalizes logistic regression for multi-class problems.  
+
+---
+
+### Softmax Regression
+- For each class j:  
+  - Compute z_j = w_j . x + b_j.  
+  - Probability: a_j = (e^(z_j)) / (∑ e^(z_k)).  
+- Loss: negative log likelihood of the correct class.  
+- Reduces to logistic regression when N=2.  
+- Provides a probability distribution across all classes.  
+
+---
+
+### Neural Networks with Softmax Output
+- For multi-class tasks, output layer has as many units as classes.  
+- Each unit uses softmax to output probabilities.  
+- TensorFlow uses **sparse categorical cross-entropy** as the loss.  
+- Softmax activations depend on all \(z\) values simultaneously.  
+
+---
+
+### Numerically Stable Softmax
+- Floating-point round-off errors can affect accuracy.  
+- TensorFlow’s `from_logits=True` option avoids explicitly computing softmax activations, improving numerical stability.  
+- Recommended approach: output raw logits and let TensorFlow handle softmax + loss internally.  
+
+---
+
+### Multi-Label Classification
+- Different from multi-class: each input can have multiple labels simultaneously.  
+- Example: self-driving car image may contain car, bus, pedestrian all at once.  
+- Output layer has multiple neurons, each with sigmoid activation.  
+- Produces a vector of independent binary predictions.  
+
+---
+
+### Adam Optimization
+- Gradient descent uses a fixed learning rate, which can be too slow or unstable.  
+- **Adam (Adaptive Moment Estimation)** adjusts learning rates automatically per parameter.  
+- Speeds up convergence and reduces oscillations.  
+- Default learning rate often \(10^{-3}\), but tuning is recommended.  
+- Adam is the de facto standard optimizer today.  
+
+---
+
+### Convolutional Layers
+- Dense layers connect every neuron to all previous activations.  
+- Convolutional layers connect neurons only to local regions of the input.  
+- Benefits: faster computation, less data needed, reduced overfitting.  
+- Examples: image recognition (patches of pixels), EKG signal analysis (windows of time series).  
+- CNNs stack multiple convolutional layers for powerful pattern recognition.  
+
+---
+
+### Derivatives and Backprop Basics
+- Derivatives measure sensitivity: how much cost changes when parameters change.  
+- Example: J(w) = w^2, derivative = 2w.  
+- Gradient descent uses derivatives to update parameters.  
+- Tools like SymPy can compute derivatives automatically.  
+
+---
+
+### Computation Graphs and Backpropagation
+- Computation graphs break calculations into nodes.  
+- Forward propagation: left to right, compute outputs and cost.  
+- Backpropagation: right to left, compute derivatives efficiently.  
+- Efficiency: compute all gradients in N + P steps instead of N x P.  
+- This makes training large networks feasible.  
+
+---
+
+### Backpropagation in Larger Networks
+- Example: network with one hidden unit and one output unit.  
+- Forward pass computes activations and cost.  
+- Backprop computes derivatives for all parameters efficiently.  
+- Confirmed derivative example: ∂𝐽 / ∂𝑤_1 = 6.  
+- Modern frameworks (TensorFlow, PyTorch) automate this using computation graphs and automatic differentiation.  
+
+---
+
+**Final Takeaway**:  
+Neural networks are trained by defining architectures, choosing appropriate activation functions, using efficient optimizers like Adam, and relying on backpropagation through computation graphs to compute gradients.
+Multi-class and multi-label problems require different output strategies (softmax vs multiple sigmoids).
+Convolutional layers expand the toolkit for handling structured data like images and signals.
+Thanks to automatic differentiation, frameworks handle the complex math, making deep learning more accessible.  
